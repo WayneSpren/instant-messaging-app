@@ -13,7 +13,7 @@ function Login() {
     setError('')
     try {
       await api.post('/api/auth/login', { email, password })
-      navigate('/home')
+      navigate('/chat')
     } catch (err) {
       setError('Invalid email or password')
     }
