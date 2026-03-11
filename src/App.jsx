@@ -2,6 +2,10 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Chat from './pages/Chat'
+import Profile from './pages/Profile'
+import Help from './pages/Help'
+
+
 
 function App() {
   return (
@@ -11,6 +15,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/help" element={<Help />} />
+
       </Routes>
     </BrowserRouter>
   )
