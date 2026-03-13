@@ -2,17 +2,22 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../api'
 
-function ContactsContainer({ onSelectContact }) {
+function ContactsContainer({ onSelectContact, registerRefresh }) {
   const [contacts, setContacts] = useState([])
   const [searchTerm, setSearchTerm] = useState('')
   const [searchResults, setSearchResults] = useState([])
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  useEffect(() => {
+  const fetchContacts = () => {
     api.get('/api/contacts/get-contacts-for-list')
       .then(res => setContacts(res.data.contacts))
       .catch(() => setError('Failed to load contacts'))
+  }
+
+  useEffect(() => {
+    fetchContacts()
+    if (registerRefresh) registerRefresh(fetchContacts)
   }, [])
 
   const handleSearch = async () => {
@@ -73,7 +78,6 @@ function ContactsContainer({ onSelectContact }) {
       <button onClick={() => navigate('/profile')}>Edit Profile</button>
       <button onClick={() => navigate('/help')}>Help</button>
       <button onClick={handleLogout} style={{ marginTop: '20px' }}>Logout</button>
-      
     </div>
   )
 }
