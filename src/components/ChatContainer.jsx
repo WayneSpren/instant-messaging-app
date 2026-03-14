@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { io } from 'socket.io-client'
 import api from '../api'
+import Notification from './Notification'
 
 const SERVER_URL = import.meta.env.VITE_SERVER_URL
 
@@ -10,6 +11,8 @@ function ChatContainer({ contact, onMessageSent }) {
   const [userInfo, setUserInfo] = useState(null)
   const socketRef = useRef(null)
   const messagesEndRef = useRef(null)
+  const [notification, setNotification] = useState('')
+
 
   useEffect(() => {
     api.get('/api/auth/userinfo')
@@ -39,6 +42,9 @@ function ChatContainer({ contact, onMessageSent }) {
     socketRef.current.on('receiveMessage', (message) => {
       console.log('Received message:', message)
       setMessages(prev => [...prev, message])
+      if (message.sender !== userInfo?.id) {
+        setNotification(`New message from ${contact.email}`)
+      }
     })
 
     socketRef.current.on('connect', () => {
@@ -114,6 +120,7 @@ function ChatContainer({ contact, onMessageSent }) {
         />
         <button onClick={handleSend}>Send</button>
       </div>
+      <Notification message={notification} onClose={() => setNotification('')} />
     </div>
   )
 }
