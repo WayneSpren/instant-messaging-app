@@ -15,7 +15,7 @@ function Profile() {
         setFirstName(res.data.firstName || '')
         setLastName(res.data.lastName || '')
       })
-      .catch(() => setError('Failed to load profile'))
+      .catch(() => setError('Profile did not load'))
   }, [])
 
   const handleUpdate = async () => {
@@ -24,7 +24,7 @@ function Profile() {
       setSuccess('Profile updated!')
       setTimeout(() => navigate('/chat'), 1000)
     } catch {
-      setError('Failed to update profile')
+      setError('Profiel could not be updated')
     }
   }
 

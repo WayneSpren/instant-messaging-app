@@ -15,7 +15,7 @@ function Register() {
       await api.post('/api/auth/signup', { email, password })
       navigate('/login')
     } catch (err) {
-      setError('Registration failed, email may already exist')
+      setError('Registration failed')
     }
   }
 

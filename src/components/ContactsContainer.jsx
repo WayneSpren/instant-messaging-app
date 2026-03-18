@@ -12,7 +12,7 @@ function ContactsContainer({ onSelectContact, registerRefresh }) {
   const fetchContacts = () => {
     api.get('/api/contacts/get-contacts-for-list')
       .then(res => setContacts(res.data.contacts))
-      .catch(() => setError('Failed to load contacts'))
+      .catch(() => setError('Contacts could not be loaded'))
   }
 
   useEffect(() => {
@@ -26,7 +26,7 @@ function ContactsContainer({ onSelectContact, registerRefresh }) {
       const res = await api.post('/api/contacts/search', { searchTerm })
       setSearchResults(res.data.contacts)
     } catch {
-      setError('Search failed')
+      setError('Could not find user')
     }
   }
 
@@ -41,7 +41,7 @@ function ContactsContainer({ onSelectContact, registerRefresh }) {
       <div>
         <input
           type="text"
-          placeholder="Search users..."
+          placeholder="Find a user"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />

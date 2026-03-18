@@ -1,4 +1,4 @@
 function EmptyChatContainer() {
-  return <div>Select a contact to start chatting</div>
+  return <div>Select a contact to begin chatting!</div>
 }
 export default EmptyChatContainer

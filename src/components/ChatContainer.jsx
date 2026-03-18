@@ -26,13 +26,14 @@ function ChatContainer({ contact, onMessageSent }) {
 
   useEffect(() => {
     if (!userInfo) return
-    setPage(1)
 
     console.log('Fetching messages for contact:', contact._id)
     api.post('/api/messages/get-messages', { id: contact._id })
       .then(res => {
         console.log('Messages response:', res.data)
-        setMessages(res.data.messages)
+        const msgs = res.data.messages
+        setMessages(msgs)
+        setPage(Math.ceil(msgs.length / messagesPerPage) || 1)
       })
       .catch((err) => console.error('Failed to load messages:', err))
 
@@ -102,12 +103,12 @@ function ChatContainer({ contact, onMessageSent }) {
   }
 
   const handleDeleteDM = async () => {
-    if (!window.confirm('Are you sure you want to delete this conversation?')) return
+    if (!window.confirm('Delete this conversation forever?')) return
     try {
       await api.delete(`/api/contacts/delete-dm/${contact._id}`)
       window.location.reload()
     } catch {
-      console.error('Failed to delete DM')
+      console.error('Could not delete chat')
     }
   }
 
@@ -160,7 +161,7 @@ function ChatContainer({ contact, onMessageSent }) {
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-          placeholder="Type a message..."
+          placeholder="Write a message"
           style={{ flex: 1 }}
         />
         <button onClick={handleSend}>Send</button>

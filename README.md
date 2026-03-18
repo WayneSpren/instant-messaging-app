@@ -1,16 +1,54 @@
-# React + Vite
+# Instant Messaging App Frontend by Derek Dickinson
+# https://github.com/derekdickinsonpdx/instant-messaging-app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Code Structure
 
-Currently, two official plugins are available:
+# src/pages:
+# Chat.jsx - main chat page
+# Login.jsx - login page
+# Profile.jsx - edit profile info
+# Register.jsx - register account
+# Help.jsx - help page
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# src/components:
+# ChatContainer.jsx - message display
+# ContactsContainer.jsx - contacts display
+# EmptyChatContainer.jsx - displays when no contact selected
+# Notification.jsx - notification display
 
-## React Compiler
+# src/api.js:
+# App.jsx - routing
+# main.jsx - entry point
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Testing
 
-## Expanding the ESLint configuration
+# Unit Tests:
+# Register page rejects invalid credentials
+# Login page rejects invalid credentials
+# Notifications display on the screen when prompted
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Feature Test:
+# Account login info is saved correctly
+# Contacts are searchable
+# Contacts can't search themselves
+# Message history displays properly
+# Chats can be deleted
+# Logout redirects to login page
+
+# System Test:
+# Real-time messaging works and messages are saved
+# List of contacts is saved and updatable
+# Notifications are displayed when appropriate
+
+# Challenges Faced:
+# Being new to React, Vite, Axios etc made it very difficult to get started.
+# Real time messaging was very difficult to set up due the userId parameter not being mentioned in the API spec.
+# Trying to connect to the remote backend delayed production by about a week.
+# Many features ended up needing to be completely different than I'd planned in earlier documents.
+# Some backend behavior generally differed from specs.
+# Was often very difficult to debug the project due to the variety of interacting tools.
+
+# Additional Features
+# Message timestamps show the day sent.
+# Confirm button employed when deleting conversations.
+# Contact search results clear when joining a chat.
