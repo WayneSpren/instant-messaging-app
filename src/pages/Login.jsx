@@ -42,7 +42,7 @@ function Login() {
         {error && <div style={{color: 'red'}}>{error}</div>}
         <button type="submit">Login</button>
       </form>
-      <p>No account? <Link to="/register">Register here</Link></p>
+      <p><Link to="/register">Register here</Link></p>
     </div>
   )
 }
